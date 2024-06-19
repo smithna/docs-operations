@@ -75,7 +75,7 @@ Instead, you have to add these afterward (see link:{neo4j-docs-base-uri}/cypher-
 The syntax for importing a set of CSV files is:
 
 ----
-neo4j-admin database import full [-h] [--expand-commands] [--verbose] [--auto-skip-subsequent-headers[=true|false]]
+neo4j-admin database import full <database> [-h] [--expand-commands] [--verbose] [--auto-skip-subsequent-headers[=true|false]]
                                  [--ignore-empty-strings[=true|false]] [--ignore-extra-columns[=true|false]]
                                  [--legacy-style-quoting[=true|false]] [--multiline-fields[=true|false]]
                                  [--normalize-types[=true|false]] [--overwrite-destination[=true|false]]
@@ -87,7 +87,7 @@ neo4j-admin database import full [-h] [--expand-commands] [--verbose] [--auto-sk
                                  [--input-encoding=<character-set>] [--max-off-heap-memory=<size>] [--quote=<char>]
                                  [--read-buffer-size=<size>] [--report-file=<path>] [--threads=<num>] --nodes=[<label>[:
                                  <label>]...=]<files>... [--nodes=[<label>[:<label>]...=]<files>...]...
-                                 [--relationships=[<type>=]<files>...]... <database>
+                                 [--relationships=[<type>=]<files>...]... 
 ----
 
 === Description
@@ -96,7 +96,7 @@ Initial import into a non-existent empty database.
 
 === Parameters
 
-.`neo4j-admin database import full` parameters
+.`neo4j-admin database import full <database>` parameters
 [options="header", cols="5m,10a,2m"]
 |===
 | Parameter
@@ -361,7 +361,7 @@ For example, the following command:
 
 [source, shell]
 ----
-bin/neo4j-admin database import full @/path/to/your/<args-filename> mydb
+bin/neo4j-admin database import full mydb @/path/to/your/<args-filename> 
 ----
 For more information, see link:https://picocli.info/#AtFiles[Picocli -> AtFiles] official documentation.
 ====
@@ -441,7 +441,7 @@ For example:
 
 [source, shell, role=noplay]
 ----
-bin/neo4j-admin database import full --nodes import/node_header.csv,'import/node_data_\d{1,5}.csv' databasename
+bin/neo4j-admin database import full databasename --nodes import/node_header.csv,'import/node_data_\d{1,5}.csv'
 ----
 
 [[import-files-from-aws-s3-uris]]
@@ -460,7 +460,7 @@ include::partial$/aws-s3-credentials.adoc[]
 +
 [source, shell, role=noplay]
 ----
-bin/neo4j-admin database import full --nodes s3://myBucket/data/nodes.csv --relationships s3://myBucket/data/relationships.csv newdb
+bin/neo4j-admin database import full newdb --nodes s3://myBucket/data/nodes.csv --relationships s3://myBucket/data/relationships.csv
 ----
 
 
